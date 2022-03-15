@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\ChannelController;
+use App\Http\Controllers\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +30,8 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('channels', ChannelController::class, ['except' => 'create', 'edit']);
+    Route::resource('chats', ChatController::class, ['only' => 'store', 'update', 'destroy']);
+});
 require __DIR__.'/auth.php';

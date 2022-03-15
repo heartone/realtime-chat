@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Channel;
 use App\Models\Chat;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,15 @@ class ChatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $channel = Channel::findOrFail($request->channel_id);
+        $request->validate([
+            'content' => 'required',
+        ]);
+        $chat = $channel->chats()->create([
+            'user_id' => \Auth::id(),
+            'content' => $request->content,
+        ]);
+        return back();
     }
 
     /**

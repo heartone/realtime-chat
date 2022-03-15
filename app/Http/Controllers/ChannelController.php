@@ -14,7 +14,9 @@ class ChannelController extends Controller
      */
     public function index()
     {
-        //
+        return inertia('Chat/Base')->with([
+            'channels' => Channel::search()->paginate(50)->withQueryString(),            
+        ]);
     }
 
     /**
@@ -46,7 +48,11 @@ class ChannelController extends Controller
      */
     public function show(Channel $channel)
     {
-        //
+        return inertia('Chat/Base')->with([
+            'channels' => Channel::search()->paginate(50)->withQueryString(), 
+            'channel' => $channel,
+            'chats' => $channel->chats()->search()->paginate(20)->withQueryString(),           
+        ]);
     }
 
     /**
