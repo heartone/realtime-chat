@@ -45,7 +45,7 @@ const adjustHeight = () => {
 
 <template>
     <form class="sticky bottom-0 z-10 p-3 bg-white border-t" @submit.prevent="submitChat()">
-        <textarea ref="contentarea" rows="1" @input="adjustHeight" v-model="form.content" class="form-control w-full"></textarea>
+        <textarea ref="contentarea" rows="1" @input="adjustHeight" v-model="form.content" class="form-control w-full text--sm"></textarea>
         <button class="btn-dark" :disabled="form.processing || form.content.length == 0" type="submit">送信</button>
     </form>
 </template>

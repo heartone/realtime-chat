@@ -18,12 +18,12 @@ const dateFormat = (dateString) => {
 <template>
     <div class="sticky top-0 z-10 flex items-center h-12 px-4 border-b bg-white shadow-sm">{{ channel.name }}</div>
     <div class="overflow-y-auto">
-        <div class="p-2 border-b" v-for="chat in chats.data.slice().reverse()" :key="chat.id">
-       <div class="flex items-center">
-           <span class="text-sm font-bold">{{ chat.user.name }}</span>
+        <div class="py-3 px-4 border-b" v-for="chat in chats.data.slice().reverse()" :key="chat.id">
+        <div class="flex items-center">
+            <span class="text-sm font-bold">{{ chat.user.name }}</span>
             <span class="ml-3 text-xs text-gray-600">{{ dateFormat(chat.created_at) }}</span>
         </div>
-       <div class="mt-3" v-html="chat.content_html"></div>
+        <div class="mt-3 markdown-body" v-html="chat.content_html"></div>
     </div>
     </div>
     
