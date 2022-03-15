@@ -13,7 +13,7 @@ defineProps({
 <template>
     <AppLayout>
        
-        <div id="side" class="min-h-screen">
+        <div id="side" class="min-h-screen overflow-auto">
             <Channels :channels="channels" :channel="channel" />
         </div>
         <div id="main" class="min-h-screen overflow-auto">

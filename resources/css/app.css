@@ -6,11 +6,11 @@
     @apply border-gray-300 disabled:bg-opacity-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm;
 }
 .btn {
-    @apply inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest focus:outline-none transition ease-in-out duration-150;
+    @apply inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest transition ease-in-out duration-150;
 }
 
 .btn-dark {
-    @apply btn text-white bg-gray-800 hover:bg-gray-700 active:bg-gray-900 focus:border-gray-900;
+    @apply btn text-white bg-gray-800 hover:bg-gray-700 active:bg-gray-900 focus:border-gray-500;
 }
 .btn-danger {
     @apply btn text-white bg-red-700 hover:bg-red-600 active:bg-red-800 focus:border-red-800;

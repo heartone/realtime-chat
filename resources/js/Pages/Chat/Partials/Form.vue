@@ -17,6 +17,7 @@ onMounted(() => {
     scrollToBottom()
 })
 const submitChat = () => {
+    if (!form.content) return
     form.post(route('chats.store', {channel_id: props.channel.id}),{
         preserveScroll: true,
         onFinish: () => {
@@ -29,24 +30,37 @@ const submitChat = () => {
 }
 const scrollToBottom = () => {
     const el = document.querySelector('#main');
-    el.scrollTo(0, el.scrollHeight);
+    setTimeout(() => {
+        el.scrollTo(0, el.scrollHeight);
+    }, 0)
+    
 }
-
+ 
+let ch = 0
 const initHeight = () => {
-    contentarea.value.style.height = "42px"
+    ch = contentarea.value.clientHeight
+    contentarea.value.style.height = "auto"
 }
 const adjustHeight = () => {
-    let ch = contentarea.value.clientHeight
     contentarea.value.style.height = ch + 'px';
     let sh = contentarea.value.scrollHeight;
-    contentarea.value.style.height = sh + 'px';
+    contentarea.value.style.height = sh < 256 ? sh + 'px' : '256px';
+    
 }
 </script>
 
 <template>
     <form class="sticky bottom-0 z-10 p-3 bg-white border-t" @submit.prevent="submitChat()">
-        <textarea ref="contentarea" rows="1" @input="adjustHeight" v-model="form.content" class="form-control w-full text--sm"></textarea>
-        <button class="btn-dark" :disabled="form.processing || form.content.length == 0" type="submit">送信</button>
+        <div class="flex p-1 border border-gray-300 rounded">
+            <textarea 
+                ref="contentarea" rows="1" 
+                @input="adjustHeight" v-model="form.content"
+                class="w-full border-0 rounded bg-none focus:outline-none focus:ring-none text-sm" 
+                placeholder="メッセージを入力"
+            ></textarea>
+            <button class="btn-dark whitespace-nowrap ml-2" :disabled="form.processing" :class="{'bg-opacity-50': form.content.length == 0}" type="submit">送信</button>
+        </div>
+        
     </form>
 </template>
 <style scoped>
