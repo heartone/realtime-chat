@@ -2,7 +2,7 @@
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3'
 import ChatForm from './Partials/ChatForm'
 import ChannelForm from './Partials/ChannelForm'
-import Modal from '@/Components/Modal'
+import ModalConfirm from '@/Components/ModalConfirm'
 import Dropdown from '@/Components/Dropdown'
 import DropdownButton from '@/Components/DropdownButton'
 import { computed, ref } from 'vue';
@@ -11,6 +11,7 @@ const props = defineProps({
     chats: Object,
 })
 const showModalChannel = ref(false)
+const showModalDeleteChannel = ref(false)
 const reversedChatsData = computed(() => props.chats.data.reverse())
 const dateFormat = (dateString) => {
     const d = new Date(dateString)
@@ -24,19 +25,24 @@ const dateFormat = (dateString) => {
             <Link class="px-1 mr-2 text-gray-300 hover:text-yellow-100" :href="route('channels.index')"><i class="fa fa-chevron-left"></i></Link>
             {{ channel?.name }}
         </div>
+        <div v-if="channel">
+            <Dropdown class="z-10">
+                <template #trigger>
+                    <button class="px-2 text-gray-300 mr-2"><i class="fa fa-ellipsis-v"></i></button>
+                </template>
+                <template #content>
+                    <DropdownButton @click="showModalChannel=true" @close="showModalChannel=false">
+                        チャンネル情報編集
+                    </DropdownButton>
+                    <DropdownButton @click="showModalDeleteChannel=true" @close="showModalDeleteChannel=false">
+                        チャンネル削除
+                    </DropdownButton>
+                </template>
+            </Dropdown>
+            <ChannelForm :channel="channel" :show="showModalChannel" @close="showModalChannel=false" />
+            <ModalConfirm :show="showModalDeleteChannel" @close="showModalDeleteChannel=false" method="delete" :url="route('channels.destroy', channel)" />
+        </div>
         
-        <Dropdown class="z-10">
-            <template #trigger>
-                <button class="px-2 text-gray-300 mr-2"><i class="fa fa-ellipsis-v"></i></button>
-            </template>
-            <template #content>
-                <DropdownButton @click="showModalChannel=true" @close="showModalChannel=false">
-                    チャンネル情報編集
-                </DropdownButton>
-            </template>
-        </Dropdown>
-        <ChannelForm :channel="channel" :show="showModalChannel" @close="showModalChannel=false" />
-    
     </div>
     
 

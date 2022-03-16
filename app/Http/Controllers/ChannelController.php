@@ -98,6 +98,8 @@ class ChannelController extends Controller
      */
     public function destroy(Channel $channel)
     {
-        //
+        // todo policy
+        $channel->delete();
+        return redirect()->route('channels.index')->with('message', 'チャンネルを削除しました');
     }
 }
