@@ -15,7 +15,7 @@ class ChannelController extends Controller
     public function index()
     {
         return inertia('Chat/Base')->with([
-            'channels' => Channel::search()->paginate(50)->withQueryString(),            
+            'channels' => Channel::search()->paginate(20)->withQueryString(),            
         ]);
     }
 
@@ -37,7 +37,12 @@ class ChannelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:50',
+            'description' => 'nullable|string',
+        ]);
+        $channel = \Auth::user()->channels()->create($request->all());
+        return redirect()->route('channels.show', $channel);
     }
 
     /**
@@ -75,7 +80,14 @@ class ChannelController extends Controller
      */
     public function update(Request $request, Channel $channel)
     {
-        //
+        // todo policy
+        $request->validate([
+            'name' => 'required|max:50',
+            'description' => 'nullable|string',
+        ]);
+        // dd($request->all(), $channel->toArray());
+        $channel->update($request->all());
+        return redirect()->route('channels.show', $channel);
     }
 
     /**

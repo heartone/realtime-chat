@@ -6,14 +6,20 @@
     @apply border-gray-300 disabled:bg-opacity-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm;
 }
 .btn {
-    @apply inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest transition ease-in-out duration-150;
+    @apply inline-flex items-center px-4 py-2 rounded-md font-semibold text-xs uppercase tracking-widest transition ease-in-out duration-150;
 }
 
 .btn-dark {
     @apply btn text-white bg-gray-800 hover:bg-gray-700 active:bg-gray-900 focus:border-gray-500;
 }
+.btn-white {
+    @apply btn border bg-white active:bg-gray-100 focus:border-blue-300;
+}
 .btn-danger {
     @apply btn text-white bg-red-700 hover:bg-red-600 active:bg-red-800 focus:border-red-800;
+}
+.btn-primary {
+    @apply btn text-white bg-blue-700 hover:bg-blue-600 active:bg-blue-800 focus:border-blue-800;
 }
 
 /*==================================

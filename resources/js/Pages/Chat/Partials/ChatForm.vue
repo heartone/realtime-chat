@@ -17,14 +17,14 @@ onMounted(() => {
     scrollToBottom()
 })
 const submitChat = () => {
-    if (!form.content) return
     form.post(route('chats.store', {channel_id: props.channel.id}),{
         preserveScroll: true,
         onFinish: () => {
             form.content = ''            
-            scrollToBottom()
+            
             initHeight()
             contentarea.value.focus()
+            scrollToBottom()
         }
     })
 }
@@ -32,10 +32,8 @@ const scrollToBottom = () => {
     const el = document.querySelector('#main');
     setTimeout(() => {
         el.scrollTo(0, el.scrollHeight);
-    }, 0)
-    
+    }, 0)   
 }
- 
 let ch = 0
 const initHeight = () => {
     ch = contentarea.value.clientHeight
@@ -50,7 +48,7 @@ const adjustHeight = () => {
 </script>
 
 <template>
-    <form class="sticky bottom-0 z-10 p-3 bg-white border-t" @submit.prevent="submitChat()">
+    <form class="sticky bottom-0 z-8 p-3 bg-white border-t" @submit.prevent="submitChat()">
         <div class="flex p-1 border border-gray-300 rounded">
             <textarea 
                 ref="contentarea" rows="1" 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Channel extends Model
 {
     protected $fillable = [
-        'user_id', 'name', 'description,'
+        'user_id', 'name', 'description'
     ];
     public function chats() {
         return $this->hasMany(Chat::class);

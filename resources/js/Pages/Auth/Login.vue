@@ -63,5 +63,8 @@ const submit = () => {
                 </BreezeButton>
             </div>
         </form>
+        <div class="mt-6 pt-2 border-t">
+            or <Link :href="route('register')" class="underline text-sm text-gray-600 hover:text-gray-900">Register</Link>
+        </div>
     </BreezeGuestLayout>
 </template>

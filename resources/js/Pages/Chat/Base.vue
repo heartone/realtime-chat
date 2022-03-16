@@ -12,7 +12,7 @@ defineProps({
 </script>
 <template>
     <AppLayout>
-       
+        <Head v-if="channel" :title="channel.name" />
         <div id="side" class="min-h-screen overflow-auto">
             <Channels :channels="channels" :channel="channel" />
         </div>

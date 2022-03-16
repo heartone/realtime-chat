@@ -41,4 +41,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = [
+        'gravatar_url'
+    ];
+
+    public function channels()
+    {
+        return $this->hasMany(Channel::class);
+    }
+    public function chats()
+    {
+        return $this->hasMany(Chat::class);
+    }
+    public function getGravatarUrlAttribute()
+    {
+        return \Gravatar::get($this->email, ['size' => 50]);
+    }
 }

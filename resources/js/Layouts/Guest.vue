@@ -10,7 +10,7 @@ import { Link } from '@inertiajs/inertia-vue3';
                 <BreezeApplicationLogo class="w-20 h-20 fill-current text-gray-500" />
             </Link>
         </div>
-
+        <!-- <div class="mt-4 text-gray-600 text-2xl">{{ $page.props.title }}</div> -->
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <slot />
         </div>
