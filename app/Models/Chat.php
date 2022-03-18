@@ -11,7 +11,7 @@ class Chat extends Model
         'user_id', 'content'
     ];
     protected $appends = [
-        'content_html'
+        'content_html', 'is_edited'
     ];
     public function channel()
     {
@@ -26,6 +26,10 @@ class Chat extends Model
         return \Str::markdown($this->content ?? '',[
             'html_input' => 'escape',
         ]);
+    }
+    public function getIsEditedAttribute()
+    {
+        return $this->created_at != $this->updated_at;
     }
     public function scopeSearch($query)
     {

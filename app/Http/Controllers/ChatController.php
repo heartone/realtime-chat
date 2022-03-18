@@ -13,20 +13,18 @@ class ChatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $channel = Channel::findOrFail($request->channel_id);
+        return $channel->chats()->search()->paginate(5)->withQueryString();
+        return inertia('Chat/Base')->with([
+            'channels' => Channel::search()->paginate(50)->withQueryString(), 
+            'channel' => $channel,
+            'chats' => $channel->chats()->search()->paginate(5)->withQueryString(),           
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -58,16 +56,7 @@ class ChatController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Chat  $chat
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Chat $chat)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -78,7 +67,12 @@ class ChatController extends Controller
      */
     public function update(Request $request, Chat $chat)
     {
-        //
+        // todo policy
+        $request->validate([
+            'content' => 'required',
+        ]);
+        $chat->update($request->all());
+        return $chat;
     }
 
     /**

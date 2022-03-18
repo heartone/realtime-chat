@@ -1,7 +1,7 @@
 <template>
     <modal :show="show" :max-width="maxWidth" :closeable="closeable" @close="close">
         <div class="">
-            <div class="flex justify-between items-center px-6 py-4 border-b">
+            <div class="flex justify-between items-center px-5 py-3 border-b bg-gray-100">
                 <div class="text-lg font-bold">
                     <slot name="header"></slot>
                 </div>

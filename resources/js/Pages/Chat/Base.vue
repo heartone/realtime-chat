@@ -13,12 +13,12 @@ defineProps({
 <template>
     <AppLayout>
         <Head v-if="channel" :title="channel.name" />
-        <div id="side" class="min-h-screen overflow-auto">
+        <div id="side" class="min-h-screen overflow-auto" scroll-region>
             <Channels :channels="channels" :channel="channel" />
         </div>
-        <div id="main" class="min-h-screen overflow-auto">
-            <Chats :channel="channel" :chats="chats" />
-        </div>
+        
+            <Chats :channel="channel" />
+        
         
     </AppLayout>
 </template>

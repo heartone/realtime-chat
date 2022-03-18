@@ -2,30 +2,19 @@
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3'
 import Dropdown from '@/Components/Dropdown'
 import DropdownButton from '@/Components/DropdownButton'
-import ElasticTextArea from '@/Components/ElasticTextArea'
-
+import ChatEditForm from './ChatEditForm'
 import { ref } from 'vue'
 const props = defineProps({
     chat: Object,
 })
-const chatEdit = ref(props.chat)
-const show = ref(false)
+const emits = defineEmits(['onSubmit'])
+
+const show = ref()
 const dateFormat = (dateString) => {
     const d = new Date(dateString)
     return d.toLocaleString('ja-JP')
 }
 
-const onSubmit = async () => {
-    const response = await axios.post(route('chats.update', props.chat), {
-        _method: 'patch',
-        content: chatEdit.value.content
-    })
-    console.log(response.data)
-    chatEdit.value = response.data
-    show.value = false
-   
-
-}
 </script>
 <template>
     <div>
@@ -48,18 +37,7 @@ const onSubmit = async () => {
                 </Dropdown>
             </div>
         </div>
-        <div v-if="!show">
-            <div class="mt-2 markdown-body" v-html="chatEdit.content_html"></div>
-            <div v-if="chatEdit.is_edited" class="mt-1 text-xs text-gray-500">（編集済み）</div>
-        </div>
-        <form v-else class="py-3" @submit.prevent="onSubmit()">
-            <div class="p-1 border border-gray-300 rounded">
-                <ElasticTextArea :autofocus="true" :autoadjust="true" v-model="chatEdit.content" placeholder="メッセージを入力" />
-                <div class="p-2">
-                    <button class="btn-success" type="submit">送信</button>
-                    <button type="button" class="btn-white ml-2" @click="show=false">キャンセル</button>
-                </div>
-            </div>
-        </form>
+        <div v-if="!show" class="mt-2 markdown-body" v-html="chat.content_html"></div>
+        <ChatEditForm v-if="show" @close="show=false" @onSubmit="onSubmit" :chat="chat" />
     </div>
 </template>

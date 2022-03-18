@@ -17,7 +17,7 @@ const submitChannel = () => {
     const method = form.id ? 'patch' : 'post'
     const url = form.id ? route('channels.update', props.channel) : route('channels.store')
     form.submit(method, url, {
-        onSuccess: () => {    
+        onSuccess: () => {            
             emits('close')
         }
     })
@@ -29,7 +29,7 @@ const submitChannel = () => {
         <template #header>チャンネル{{ channel ? '情報の編集' : '新規作成'}}</template>
         <template #content>
             <form @submit.prevent="submitChannel()">
-                <div class="text-sm text-gray-700 font-bold">チャンネル名</div>
+                <div class="text-sm text-gray-700 font-bold">チャンネル名 *</div>
                 <input type="text" class="mt-2 form-control w-full" v-model="form.name">
                 <InputError :message="form.errors.name" />
                 <div class="mt-6 text-sm text-gray-700 font-bold">チャンネルの説明</div>

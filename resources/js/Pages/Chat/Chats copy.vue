@@ -12,54 +12,27 @@ const props = defineProps({
     channel: Object,
 })
 const chats = ref([])
-const pagination = ref({})
 const container = ref(null)
 onMounted(() => {    
-   initChats()
+   fetchChats()
 })
 
-const loadMore = () => {
-    if (!pagination.value.nextPageUrl) return
-    const prev = container.value.scrollHeight
-    axios.get(pagination.value.nextPageUrl).then((response) => {
-        chats.value.unshift(...(response.data.data.slice().reverse()))
-        pagination.value = {
-            nextPageUrl: response.data.next_page_url
-        }
-    }).finally(() => {
-        container.value.scrollTop = container.value.scrollHeight - prev
-    })    
-}
-const  initChats = async () => {
-    // const response = await axios.get(route('chats.index', {channel_id: props.channel.id}))
-    // chats.value = response.data.data
-    axios.get(route('chats.index', {channel_id: props.channel.id})).then((response) => {
-        chats.value = response.data.data.slice().reverse()
-        pagination.value = {
-            nextPageUrl: response.data.next_page_url
-        }
-    }).finally(() => {
-        container.value.scrollTo(0, container.value.scrollHeight);
-    }) 
-   
+const fetchChats = async (url) => {
+    // https://ma-vericks.com/infinite-scroll/
+    // https://peachscript.github.io/vue-infinite-loading/
+
+    // const prev = container.value.scrollHeight
     
+    const response = await axios.get(url ?? route('chats.index', {channel_id: props.channel.id}))
+    chats.value.push(...(response.data.data).slice().reverse())
 }
 const showModalChannel = ref(false)
 const showModalDeleteChannel = ref(false)
 const scrollToBottom = () => {
     
     setTimeout(() => {
-        container.value.scrollTo(0, container.scrollHeight);
-        console.log('scrollToBottom')
+        el.scrollTo(0, el.scrollHeight);
     }, 0)   
-}
-const scroll = () => {
-    window.onscroll = (ev) => {
-        if (container.value.scrollTop < 100 && pagination.value.nextPageUrl) {
-            console.log('loadmore')
-            loadMore()
-        }
-    }
 }
 </script>
 
@@ -91,17 +64,17 @@ const scroll = () => {
     </div>
     
     <div class="p-3">
-        <button class="btn btn-dark" @click="loadMore()">load more</button>
+        <button class="btn btn-dark" @click="fetchChats()">load more</button>
     </div>
-   {{ pagination }}
+   
     <div v-if="chats">
         
         <div class="py-3 px-4 border-b flex" v-for="chat in chats" :key="chat.id">
-            <Chat :chat="chat" />
+            <Chat :chat="chat" @onSubmit="fetchChats" />
         </div>
    
     </div>
-    <ChatForm v-if="channel" :channel="channel" @onSubmit="initChats()" />
+    <ChatForm v-if="channel" :channel="channel" @onSubmit="fetchChats" />
     
     </div>
 </template>

@@ -21,6 +21,9 @@
 .btn-primary {
     @apply btn text-white bg-blue-700 hover:bg-blue-600 active:bg-blue-800 focus:border-blue-800;
 }
+.btn-success {
+    @apply btn text-white bg-green-700 hover:bg-green-600 active:bg-green-800 focus:border-green-800;
+}
 
 /*==================================
  * github-markdown-css
