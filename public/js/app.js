@@ -20878,7 +20878,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Components_Modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/Modal */ "./resources/js/Components/Modal.vue");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _ChannelForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ChannelForm */ "./resources/js/Pages/Chat/Partials/ChannelForm.vue");
+/* harmony import */ var _Components_ModalConfirm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/ModalConfirm */ "./resources/js/Components/ModalConfirm.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -20892,11 +20896,24 @@ __webpack_require__.r(__webpack_exports__);
         emits = _ref.emit;
     expose();
     var props = __props;
+    var showEdit = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
+    var showDelete = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
+
+    var onClose = function onClose() {
+      showDelete.value = false;
+      emits('close');
+    };
+
     var __returned__ = {
       props: props,
       emits: emits,
+      showEdit: showEdit,
+      showDelete: showDelete,
+      onClose: onClose,
       Modal: _Components_Modal__WEBPACK_IMPORTED_MODULE_0__["default"],
-      ref: vue__WEBPACK_IMPORTED_MODULE_1__.ref
+      ChannelForm: _ChannelForm__WEBPACK_IMPORTED_MODULE_1__["default"],
+      ModalConfirm: _Components_ModalConfirm__WEBPACK_IMPORTED_MODULE_2__["default"],
+      ref: vue__WEBPACK_IMPORTED_MODULE_3__.ref
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -23201,7 +23218,7 @@ var _hoisted_1 = /*#__PURE__*/_withScopeId(function () {
 
 var _hoisted_2 = {
   key: 0,
-  "class": "py-2 text-sm text-gray-500"
+  "class": "py-2 text-sm text-gray-600"
 };
 
 var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
@@ -23210,10 +23227,13 @@ var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
+var _hoisted_4 = {
+  "class": "flex items-center justify-between py-1"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Modal"], {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Modal"], {
     show: $props.show,
-    onClose: _cache[0] || (_cache[0] = function ($event) {
+    onClose: _cache[5] || (_cache[5] = function ($event) {
       return _ctx.$emit('close');
     })
   }, {
@@ -23230,14 +23250,60 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       )])];
     }),
     footer: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [];
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        "class": "link text-sm",
+        onClick: _cache[0] || (_cache[0] = function ($event) {
+          return $setup.showEdit = true;
+        }),
+        onClose: _cache[1] || (_cache[1] = function ($event) {
+          return $setup.showEdit = false;
+        })
+      }, "編集する", 32
+      /* HYDRATE_EVENTS */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        "class": "link ml-5 text-sm",
+        onClick: _cache[2] || (_cache[2] = function ($event) {
+          return $setup.showDelete = true;
+        }),
+        onClose: _cache[3] || (_cache[3] = function ($event) {
+          return $setup.showDelete = false;
+        })
+      }, "削除", 32
+      /* HYDRATE_EVENTS */
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        "class": "btn-white",
+        onClick: _cache[4] || (_cache[4] = function ($event) {
+          return _ctx.$emit('close');
+        })
+      }, "閉じる")])];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["show"]);
+  , ["show"]), $props.channel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ChannelForm"], {
+    key: 0,
+    channel: $props.channel,
+    show: $setup.showEdit,
+    onClose: _cache[6] || (_cache[6] = function ($event) {
+      return $setup.showEdit = false;
+    })
+  }, null, 8
+  /* PROPS */
+  , ["channel", "show"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.channel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ModalConfirm"], {
+    key: 1,
+    show: $setup.showDelete,
+    onClose: _cache[7] || (_cache[7] = function ($event) {
+      return $setup.onClose();
+    }),
+    method: "delete",
+    url: _ctx.route('channels.destroy', $props.channel)
+  }, null, 8
+  /* PROPS */
+  , ["show", "url"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
+  /* STABLE_FRAGMENT */
+  );
 }
 
 /***/ }),
@@ -23885,7 +23951,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ndt[data-v-7946f9be] {\n    font-size: .9rem;\n    margin-bottom: 8px;\n    color: #777;\n}\ndd[data-v-7946f9be] {\n    margin-bottom: 20px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ndt[data-v-7946f9be] {\n    margin-bottom: 8px;\n    font-size: .9rem;\n    color: #777;\n}\ndd[data-v-7946f9be] {\n    margin-bottom: 20px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
