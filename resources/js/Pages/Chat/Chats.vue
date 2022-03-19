@@ -72,6 +72,11 @@ const scroll = () => {
 const toggleMenu = () => {
     document.querySelector('#side').classList.toggle('on')
 }
+
+Echo.channel('chat').listen('ChatCreated', (e) => {
+    console.log('laravel-eco')
+    initChats()
+})
 </script>
 
 <template>

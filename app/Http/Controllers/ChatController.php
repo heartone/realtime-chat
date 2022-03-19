@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Channel;
 use App\Models\Chat;
 use Illuminate\Http\Request;
-
+use App\Events\ChatCreated;
 class ChatController extends Controller
 {
     /**
@@ -42,6 +42,7 @@ class ChatController extends Controller
             'user_id' => \Auth::id(),
             'content' => $request->content,
         ]);
+        event(new ChatCreated($chat));
         return back();
     }
 
