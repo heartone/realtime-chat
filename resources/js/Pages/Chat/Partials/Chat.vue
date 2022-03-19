@@ -34,8 +34,8 @@ const onDelete = async () => {
 
 </script>
 <template>
-    <div class="py-3 px-4 border-t flex" v-if="!chatEdit.deleted">
-        <div class="">
+    <div class="p-2 md:py-3 md:px-4 border-t flex" v-if="!chatEdit.deleted">
+        <div class="w-10">
             <img class="h-10 h-10 whitespace-nowrap overflow-hidden text-xs rounded" :src="chat.user.gravatar_url" size="64" :alt="chat.user.name + 'のアイコン'">
         </div>
         <div class="chat-container pl-3">

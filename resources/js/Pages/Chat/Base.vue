@@ -44,6 +44,7 @@ defineProps({
     }
     #main {
         left: 300px;
+        width: calc(100% - 300px);
     }
 }
 </style>

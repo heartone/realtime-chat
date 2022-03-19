@@ -78,8 +78,8 @@ const toggleMenu = () => {
 <div id="main" ref="container" class="w-full absolute top-0 bottom-0 right-0 m-auto overflow-auto" scroll-region>
     <div class="sticky top-0 z-10 flex items-center justify-between h-12 px-2 shadow bg-gray-900 text-gray-100 font-bold shadow-sm">
         <div class="flex items-center">
-            <button @click="toggleMenu()" class="md:hidden py-1 px-2 mr-2 bg-gray-800 text-gray-300 hover:bg-black hover:text-yellow-100"><i class="fa fa-bars fa-fw"></i></button>
-            <div v-if="channel" @click="showModalChannel=true" @close="showModalChannel=false" class="truncate cursor-pointer hover:text-blue-300 text-gray-200">{{ channel.name }}</div>
+            <button @click="toggleMenu()" class="md:hidden py-1 px-2 mr-1 bg-gray-800 text-gray-300 hover:bg-black hover:text-yellow-100"><i class="fa fa-bars fa-fw"></i></button>
+            <div v-if="channel" @click="showModalChannel=true" @close="showModalChannel=false" class="truncate ml-1 cursor-pointer hover:text-blue-300 text-gray-200">{{ channel.name }}</div>
         </div>
     </div>
     <ChannelShow v-if="channel" :channel="channel" :show="showModalChannel" @close="showModalChannel=false" />

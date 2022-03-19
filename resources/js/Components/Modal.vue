@@ -6,7 +6,7 @@
                     <slot name="header"></slot>
                 </div>
                 <div>
-                    <button class="w-8 h-8 leading-1 border rounded text-sm text-gray-600 hover:bg-gray-200" @click="close()"><i class="fa fa-fw fa-times"></i></button>
+                    <button class="w-8 h-8 leading-1 border rounded bg-white text-sm text-gray-600 hover:bg-gray-200" @click="close()"><i class="fa fa-fw fa-times"></i></button>
                 </div>
             </div>
             <div class="px-6 py-4">

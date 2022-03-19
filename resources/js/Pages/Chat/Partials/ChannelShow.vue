@@ -15,7 +15,10 @@ const emits = defineEmits(['close']);
         <template #content>
             <dl>
                 <dt>チャンネルの説明</dt>
-                <dd>{{ channel.description }}</dd>
+                <dd>
+                    <div v-if="!channel.description" class="py-2 text-sm text-gray-500">説明はありません</div>
+                    {{ channel.description }}
+                </dd>
                 <dt>管理者</dt>
                 <dd>{{ channel.user.name }}</dd>
             </dl>
@@ -29,10 +32,10 @@ const emits = defineEmits(['close']);
 
 dt {
     font-size: .9rem;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     color: #777;
 }
 dd {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 </style>

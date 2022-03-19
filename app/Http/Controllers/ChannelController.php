@@ -14,8 +14,10 @@ class ChannelController extends Controller
      */
     public function index()
     {
+        $channels = Channel::search()->paginate(20)->withQueryString();
         return inertia('Chat/Base')->with([
-            'channels' => Channel::search()->paginate(20)->withQueryString(),            
+            'channels' => $channels,
+            'channel' => $channels ? Channel::with('user')->findOrFail($channels[0]->id) : null,         
         ]);
     }
 
