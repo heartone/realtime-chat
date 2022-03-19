@@ -31,6 +31,7 @@ defineProps({
     min-width: 300px;
     transition: all .3s ease;
 }
+
 #side.on {
     left: 0;
     box-shadow: 4px 0px 8px rgba(0, 0, 0, 0.1);
@@ -40,6 +41,9 @@ defineProps({
         position: static;  
         left: 0;
         box-shadow: none;
+    }
+    #main {
+        left: 300px;
     }
 }
 </style>
