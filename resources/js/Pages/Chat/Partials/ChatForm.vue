@@ -14,18 +14,20 @@ const form = useForm({
 
 const eta = ref(null)
 const onSubmit = () => {
-    form.post(route('chats.store', {channel_id: props.channel.id}),{
+    form.post(route('chats.store', {channel_id: props.channel?.id}),{
         preserveScroll: true,
         onFinish: () => {
             emits('onSubmit'),
             form.content = ''            
             eta.value.initHeight()
-            eta.value.focus()
+            focus()
         }
     })
 }
 
-
+const focus = () => {
+    eta.value.focus()
+}
 </script>
 
 <template>

@@ -20,7 +20,6 @@ let ch = 0
 const initHeight = () => {
     textarea.value.style.height = "auto"
     ch = textarea.value.clientHeight
-    
 }
 const adjustHeight = () => {
     textarea.value.style.height = ch + 'px';

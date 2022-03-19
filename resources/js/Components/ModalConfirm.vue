@@ -11,13 +11,15 @@ const props = defineProps({
     title: String,
     message: {type: String, default: '本当に削除しますか？'},
     maxWidth: {type: String, default: 'sm'},
-    show: Boolean,
-    
+    show: Boolean,    
 })
 const form = useForm(props.params)
-const emits = defineEmits(['close']);
+const emits = defineEmits(['confirm', 'close']);
 
 const confirm = () => {
+    if (!props.url) {
+        return emits('confirm', props.params)
+    }
     form.submit(props.method, props.url, {
         onError: () => {
             console.log(error)
@@ -44,7 +46,6 @@ const confirm = () => {
         <template #footer>
                 <button class="btn" @click="$emit('close')" tabindex="-1">Cancel</button>
                 <button class="btn-danger" @click="confirm()" :disabled="form.processing">OK</button>
-
         </template>
     </Modal>
         

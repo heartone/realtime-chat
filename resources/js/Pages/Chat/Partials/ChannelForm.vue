@@ -5,19 +5,24 @@ import Modal from '@/Components/Modal'
 import InputError from '@/Components/InputError'
 const props = defineProps({
     channel: Object, 
-    show: Boolean
+    show: Boolean,
 })
 const emits = defineEmits(['close']);
-const form = useForm({
-    id: props.channel?.id,
-    name: props.channel?.name,
-    description: props.channel?.description,
-})
+
+const initForm = () => {
+    return useForm({
+        id: props.channel?.id,
+        name: props.channel?.name,
+        description: props.channel?.description,
+    })
+}
+const form = ref(initForm())
 const submitChannel = () => {
-    const method = form.id ? 'patch' : 'post'
-    const url = form.id ? route('channels.update', props.channel) : route('channels.store')
-    form.submit(method, url, {
-        onSuccess: () => {            
+    const method = form.value.id ? 'patch' : 'post'
+    const url = form.value.id ? route('channels.update', props.channel) : route('channels.store')
+    form.value.submit(method, url, {
+        onSuccess: () => {
+            form.value = initForm()
             emits('close')
         }
     })
@@ -41,8 +46,7 @@ const submitChannel = () => {
              <form @submit.prevent="submitChannel()">
                  <button v-if="channel" type="submit" class="btn-primary" :disabled="form.processing">更新</button>
                  <button v-else type="submit" class="btn-danger" :disabled="form.processing">登録</button>
-             </form>
-            
+             </form>     
         </template>
     </Modal>
         

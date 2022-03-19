@@ -56,6 +56,6 @@ class User extends Authenticatable
     }
     public function getGravatarUrlAttribute()
     {
-        return \Gravatar::get($this->email, ['size' => 50]);
+        return \Gravatar::get($this->email, ['size' => 256]);
     }
 }

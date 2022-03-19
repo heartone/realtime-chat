@@ -11,7 +11,7 @@ onMounted(() => {
     if (input.value.hasAttribute('autofocus')) {
         input.value.focus();
     }
-});
+})
 </script>
 
 <template>

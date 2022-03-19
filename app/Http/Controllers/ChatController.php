@@ -83,6 +83,8 @@ class ChatController extends Controller
      */
     public function destroy(Chat $chat)
     {
-        //
+        // todo policy
+        $chat->delete();
+        return $chat;
     }
 }

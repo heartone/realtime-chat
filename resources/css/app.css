@@ -2,6 +2,11 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 @import './github-markdown-css.css';
+
+.link {
+    @apply text-blue-500 hover:text-yellow-600 focus:text-yellow-500;
+}
+
 .form-control {
     @apply border-gray-300 disabled:bg-opacity-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm;
 }
@@ -24,7 +29,20 @@
 .btn-success {
     @apply btn text-white bg-green-700 hover:bg-green-600 active:bg-green-800 focus:border-green-800;
 }
-
+/*==================================
+ * animation
+==================================*/
+@layer utilities {
+    .animation-delay-100 {
+      animation-delay: 0.1s;
+    }
+    .animation-delay-200 {
+      animation-delay: 0.2s;
+    }
+    .animation-delay-400 {
+      animation-delay: 0.4s;
+    }
+  }
 /*==================================
  * github-markdown-css
 ==================================*/
@@ -33,6 +51,9 @@
 .markdown-body p, .markdown-body pre, .markdown-body table, 
 .markdown-body ul {
     margin-bottom: .8rem;
+}
+.markdown-body {
+    word-break: break-word;
 }
 .markdown-body p {
     font-size: .95rem;

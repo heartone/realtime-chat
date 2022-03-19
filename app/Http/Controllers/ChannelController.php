@@ -42,6 +42,7 @@ class ChannelController extends Controller
             'description' => 'nullable|string',
         ]);
         $channel = \Auth::user()->channels()->create($request->all());
+        
         return redirect()->route('channels.show', $channel);
     }
 
@@ -51,12 +52,12 @@ class ChannelController extends Controller
      * @param  \App\Models\Channel  $channel
      * @return \Illuminate\Http\Response
      */
-    public function show(Channel $channel)
+    public function show($id)
     {
+        $channel = Channel::with('user')->findOrFail($id);
         return inertia('Chat/Base')->with([
             'channels' => Channel::search()->paginate(50)->withQueryString(), 
             'channel' => $channel,
-            'chats' => $channel->chats()->search()->paginate(20)->withQueryString(),           
         ]);
     }
 
@@ -85,7 +86,6 @@ class ChannelController extends Controller
             'name' => 'required|max:50',
             'description' => 'nullable|string',
         ]);
-        // dd($request->all(), $channel->toArray());
         $channel->update($request->all());
         return redirect()->route('channels.show', $channel);
     }
