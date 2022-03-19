@@ -38,6 +38,3 @@ const focus = () => {
         </div>
     </form>
 </template>
-<style scoped>
-
-</style>

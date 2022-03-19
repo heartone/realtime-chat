@@ -901,9 +901,6 @@ select {
 .items-center {
   align-items: center;
 }
-.justify-start {
-  justify-content: flex-start;
-}
 .justify-end {
   justify-content: flex-end;
 }
@@ -2168,6 +2165,9 @@ select {
 .markdown-body .pl-12 {
     padding-left: 128px!important;
   }
+.sticky {
+    position: -webkit-sticky;
+}
 .link {
   --tw-text-opacity: 1;
   color: rgb(59 130 246 / var(--tw-text-opacity));
