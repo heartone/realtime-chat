@@ -31,7 +31,7 @@ const focus = () => {
 </script>
 
 <template>
-    <form class="sticky bottom-0 z-8 p-3 bg-white border-t" @submit.prevent="onSubmit()">
+    <form class="bottom-0 z-8 p-3 bg-white border-t" @submit.prevent="onSubmit()">
         <div class="flex p-1 border border-gray-300 rounded">
             <ElasticTextArea ref="eta" :autofocus="true" v-model="form.content" placeholder="メッセージを入力" />
             <button class="btn-dark whitespace-nowrap ml-2" :disabled="form.processing" :class="{'bg-opacity-50': form.content.length == 0}" type="submit">送信</button>

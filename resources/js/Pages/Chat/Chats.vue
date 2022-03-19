@@ -34,6 +34,7 @@ const loadMore = () => {
     if (!pagination.value.nextPageUrl) return
     loading.value = true
     const prev = container.value.scrollHeight
+    console.log(pagination.value.nextPageUrl)
     axios.get(pagination.value.nextPageUrl).then((response) => {
         chats.value.unshift(...(response.data.data.slice().reverse()))
         pagination.value = {
