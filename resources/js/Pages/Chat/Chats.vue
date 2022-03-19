@@ -27,14 +27,12 @@ onMounted(() => {
 // channelの変更を監視してチャットを初期化
 const { channel } = toRefs(props);
 watch(channel, () => {
-    console.log(props.channel)
     initChats()
 })
 const loadMore = () => {
     if (!pagination.value.nextPageUrl) return
     loading.value = true
     const prev = container.value.scrollHeight
-    console.log(pagination.value.nextPageUrl)
     axios.get(pagination.value.nextPageUrl).then((response) => {
         chats.value.unshift(...(response.data.data.slice().reverse()))
         pagination.value = {

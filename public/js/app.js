@@ -20671,7 +20671,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         channel = _toRefs.channel;
 
     (0,vue__WEBPACK_IMPORTED_MODULE_9__.watch)(channel, function () {
-      console.log(props.channel);
       initChats();
     });
 
@@ -20679,7 +20678,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       if (!pagination.value.nextPageUrl) return;
       loading.value = true;
       var prev = container.value.scrollHeight;
-      console.log(pagination.value.nextPageUrl);
       axios.get(pagination.value.nextPageUrl).then(function (response) {
         var _chats$value;
 
