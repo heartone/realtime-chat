@@ -15,7 +15,7 @@ const hideMenu = () => {
 </script>
 
 <template>
-    <header class="sticky top-0 z-10 flex items-center h-12 px-4 bg-gray-900 text-gray-200 border-b border-gray-200">
+    <header class="sticky top-0 z-10 flex items-center h-12 px-4 bg-gray-900 text-gray-200 shadow border-r border-gray-700">
         <Link class="truncate" :href="route('top')">💬 リアルタイムチャット</Link>
     </header>
         <div>

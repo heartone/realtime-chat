@@ -23,5 +23,16 @@ const emits = defineEmits(['close']);
         <template #footer>
         </template>
     </Modal>
-     
 </template>
+
+<style scoped>
+
+dt {
+    font-size: .9rem;
+    margin-bottom: 5px;
+    color: #777;
+}
+dd {
+    margin-bottom: 15px;
+}
+</style>

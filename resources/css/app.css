@@ -3,14 +3,6 @@
 @import 'tailwindcss/utilities';
 @import './github-markdown-css.css';
 
-.sticky {
-    position: -webkit-sticky;
-    position: -moz-sticky;
-    position: -o-sticky;
-    position: -ms-sticky;
-    position: sticky;
-}
-
 .link {
     @apply text-blue-500 hover:text-yellow-600 focus:text-yellow-500;
 }
