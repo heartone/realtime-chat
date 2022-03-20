@@ -120,11 +120,13 @@ php artisan serve
 
 ![https://res.cloudinary.com/heart1jp/image/upload/v1647767968/Newmonz/PHP/practical/realtime-chat/unread-check.gif](https://res.cloudinary.com/heart1jp/image/upload/v1647767968/Newmonz/PHP/practical/realtime-chat/unread-check.gif)
 
-#### 伸縮するテキストエリア：Elastice textarea
-
 #### 逆順無限スクロールによる追加読み込み：Infinite scrolling in reverse order
 
 ![https://res.cloudinary.com/heart1jp/image/upload/v1647768653/Newmonz/PHP/practical/realtime-chat/infinite-scrolling.gif](https://res.cloudinary.com/heart1jp/image/upload/v1647768653/Newmonz/PHP/practical/realtime-chat/infinite-scrolling.gif)
+
+#### 伸縮するテキストエリア：Elastice textarea
+
+![https://res.cloudinary.com/heart1jp/image/upload/v1647769164/Newmonz/PHP/practical/realtime-chat/elastic-textarea.gif](https://res.cloudinary.com/heart1jp/image/upload/v1647769164/Newmonz/PHP/practical/realtime-chat/elastic-textarea.gif)
 
 #### スクロール位置の維持：Preserve scroll position 
 
