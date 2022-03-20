@@ -15,10 +15,10 @@ class ChannelController extends Controller
     public function index()
     {
         $channels = Channel::search()->paginate(20)->withQueryString();
-        
+        // dd($channels->toArray());
         return inertia('Chat/Base')->with([
             'channels' => $channels,
-            'channel' => $channels ? Channel::with('user')->findOrFail($channels[0]->id) : null,         
+            'channel' => $channels ? Channel::with('owner')->findOrFail($channels[0]->id) : null,         
         ]);
     }
 
@@ -57,8 +57,8 @@ class ChannelController extends Controller
      */
     public function show($id)
     {
-        $channel = Channel::with('user')->findOrFail($id);
-        $channel->users()->sync([auth()->id() => ['access_at' => now()]]);
+        $channel = Channel::with('owner')->findOrFail($id);
+        $channel->access();
         return inertia('Chat/Base')->with([
             'channels' => Channel::search()->paginate(50)->withQueryString(), 
             'channel' => $channel,

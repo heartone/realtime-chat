@@ -20560,6 +20560,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Partials_LoginUser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Partials/LoginUser */ "./resources/js/Pages/Chat/Partials/LoginUser.vue");
 /* harmony import */ var _Partials_ChannelForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Partials/ChannelForm */ "./resources/js/Pages/Chat/Partials/ChannelForm.vue");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
 
 
 
@@ -20578,13 +20580,20 @@ __webpack_require__.r(__webpack_exports__);
       document.querySelector('#side').classList.remove('on');
     };
 
+    Echo.channel('chat').listen('ChatCreated', function (e) {
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__.Inertia.reload({
+        only: ['channels']
+      });
+    });
     var __returned__ = {
       showModalChannel: showModalChannel,
       hideMenu: hideMenu,
       Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Link,
       LoginUser: _Partials_LoginUser__WEBPACK_IMPORTED_MODULE_1__["default"],
       ChannelForm: _Partials_ChannelForm__WEBPACK_IMPORTED_MODULE_2__["default"],
-      ref: vue__WEBPACK_IMPORTED_MODULE_3__.ref
+      ref: vue__WEBPACK_IMPORTED_MODULE_3__.ref,
+      computed: vue__WEBPACK_IMPORTED_MODULE_3__.computed,
+      Inertia: _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__.Inertia
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -20750,7 +20759,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     };
 
     Echo.channel('chat').listen('ChatCreated', function (e) {
-      console.log('laravel-eco');
       initChats();
     });
     var __returned__ = {
@@ -22879,6 +22887,9 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_6 = [_hoisted_5];
+var _hoisted_7 = {
+  "class": "truncate"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
     "class": "truncate",
@@ -22912,7 +22923,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "px-3 mb-1 ml-1"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
       href: _ctx.route('channels.show', ch),
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["block py-2 px-3 truncate rounded hover:bg-gray-100 text-sm", {
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex items-center block py-2 px-2 truncate rounded hover:bg-gray-100 text-sm", {
         'bg-gray-200 hover:bg-gray-200 font-bold': ch.id == ((_$props$channel = $props.channel) === null || _$props$channel === void 0 ? void 0 : _$props$channel.id)
       }]),
       "preserve-state": "",
@@ -22922,7 +22933,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       })
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ch.name), 1
+        var _ch$user, _ch$latest_chat;
+
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["h-2 w-2 rounded-full bg-orange-500 mr-1", {
+            'invisible': ((_ch$user = ch.user) === null || _ch$user === void 0 ? void 0 : _ch$user.access_at) >= ((_ch$latest_chat = ch.latest_chat) === null || _ch$latest_chat === void 0 ? void 0 : _ch$latest_chat.created_at)
+          }])
+        }, null, 2
+        /* CLASS */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ch.name), 1
         /* TEXT */
         )];
       }),
@@ -22964,7 +22983,7 @@ var _hoisted_2 = {
   "class": "sticky top-0 z-10 flex items-center justify-between h-12 px-2 shadow bg-gray-900 text-gray-100 font-bold shadow-sm"
 };
 var _hoisted_3 = {
-  "class": "flex items-center"
+  "class": "flex overflow-hidden items-center"
 };
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
@@ -23295,7 +23314,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         innerHTML: $props.channel.description_html
       }, null, 8
       /* PROPS */
-      , _hoisted_3))]), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dd", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.channel.user.name), 1
+      , _hoisted_3))]), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dd", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.channel.owner.name), 1
       /* TEXT */
       )])];
     }),

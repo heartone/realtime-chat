@@ -19,7 +19,7 @@ const emits = defineEmits(['close']);
                 </dd>
                 <dt>管理者</dt>
                 <dd>
-                    {{ channel.user.name }}
+                    {{ channel.owner.name }}
                 </dd>
             </dl>
             

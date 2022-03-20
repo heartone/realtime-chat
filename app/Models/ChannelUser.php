@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class ChannelUser extends Model
 {
     use HasFactory;
+    protected $table = 'channel_user';
+    protected $fillable = [
+        'access_at', 'star'
+    ];
+    protected $casts = [
+        'access_at' => 'datetime',
+    ];
     public function users()
     {
         return $this->hasMany(User::class);
