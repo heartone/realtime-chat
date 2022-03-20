@@ -41,9 +41,11 @@ For the same reason, anyone can edit or delete chats.
 
 ## 利用方法：Usage
 
+### command
+
 ```php
-git clone 
-cd 
+git clone git@github.com:heartone/realtime-chat.git
+cd realtime-chat
 composer update
 
 mv.env.example .env
@@ -72,13 +74,19 @@ SLACK_URL=[任意の値：arbitary value]
 
 リアルタイム通信を行うためにはPusher公式サイトで会員登録をし、APIキーを取得する必要があります。
 
+To use real-time communication, you need to register as a member at the official Pusher website and obtain an API key.
+
 [https://pusher.com/](https://pusher.com/)
 
 ### Slack
 
 Slack通知を行うためにはSlack Appを作成してWebhookURLを取得する必要があります。
 
+To use Slack notifications, you must create a Slack App and obtain a WebhookURL.
+
 [https://api.slack.com/apps](https://api.slack.com/apps)
+
+### command
 
 ```php
 php artisan migrate --seed
@@ -107,12 +115,17 @@ php artisan serve
 - 逆順無限スクロールによるLoad more
 - チャット編集後のスクロール位置の維持
 - Markdown対応（GitHub flavor）
-- レスポンシブレイアウト：Responsive Layout
+- レスポンシブレイアウト
 
-- Textarea that expands or contracts depending on the number of lines.
-- Reverse sorting and scrolling settings so that the most recent posts are from bottom to top
-- Load more function by infinite scroll in reverse order
-- Preserve scroll position after editing a post
+- SPA (Single page application)
+- Reload the chat if the same channel is open as another client's post
+- Marking a channel as unread when a post is made by another client
+- Text area that expands and contracts according to the number of input lines
+- Reverse sorting and scrolling settings so that most recent posts are from bottom to top
+- Load more by infinite scrolling in reverse order
+- Maintain scroll position after chat editing
+- Markdown support (GitHub flavor)
+- Responsive layout
 
 ## 外部サービス
 
