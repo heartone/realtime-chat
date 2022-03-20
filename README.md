@@ -17,6 +17,12 @@ The demo site resets the database every 24 hours. Please feel free to try it out
 
 [https://newmonz-chat.herokuapp.com/](https://newmonz-chat.herokuapp.com/)
 
+### スクリーンショット：Screenshot
+
+![https://res.cloudinary.com/heart1jp/image/upload/v1647767045/Newmonz/PHP/practical/realtime-chat/screenshot.png](https://res.cloudinary.com/heart1jp/image/upload/v1647767045/Newmonz/PHP/practical/realtime-chat/screenshot.png)
+
+### 備考：Notes
+
 本来はチャンネルの作成者（＝管理者）だけがチャンネルの編集・削除を行える想定ですが、デモのためすべてのメンバーがすべてのチャンネルを編集・削除できます。
 
 チャットの編集・削除も同様です。
@@ -95,37 +101,34 @@ php artisan serve
 
 ## 機能：Functions
 
-- 会員登録
-- ログイン・ログアウト
-- チャンネルの作成
-- チャンネルの編集・削除（チャンネル作成者のみ）
+- SPA（Single page application）
+- 認証：Authentication
 - チャンネル毎のチャット投稿：Chat postings per channel.
-- チャットの編集・削除（チャット投稿者のみ）
-- 双方向通信によるリアルタイムチャット
-- 未読チェック機能
-- Slack通知で管理者に報告
+- 双方向通信によるリアルタイムチャット：Realtime chat by interactive communication
+- 未読チェック機能：Unread check function
+- Slack通知で管理者に報告：Notification via Slack
+- Markdown対応（GitHub flavor）
+- レスポンシブレイアウト：Responsive layout
 
 ## 特徴：Features
 
-- SPA（Single page application）
-- 他クライアントの投稿と同じチャンネルを開いている場合、チャットを再読み込み
-- 他クライアントからの投稿でチャンネル未読マーク付与
-- 入力行数によって伸縮するテキストエリア
-- 下から順に最新の投稿となるよう逆ソートとスクロール設定
-- 逆順無限スクロールによるLoad more
-- チャット編集後のスクロール位置の維持
-- Markdown対応（GitHub flavor）
-- レスポンシブレイアウト
+#### 双方向通信：Interactive Communication
 
-- SPA (Single page application)
-- Reload the chat if the same channel is open as another client's post
-- Marking a channel as unread when a post is made by another client
-- Text area that expands and contracts according to the number of input lines
-- Reverse sorting and scrolling settings so that most recent posts are from bottom to top
-- Load more by infinite scrolling in reverse order
-- Maintain scroll position after chat editing
-- Markdown support (GitHub flavor)
-- Responsive layout
+![https://res.cloudinary.com/heart1jp/image/upload/v1647767523/Newmonz/PHP/practical/realtime-chat/interactive-communication.gif](https://res.cloudinary.com/heart1jp/image/upload/v1647767523/Newmonz/PHP/practical/realtime-chat/interactive-communication.gif)
+
+#### リアルタイム未読チェック：Real-time unread check 
+
+![https://res.cloudinary.com/heart1jp/image/upload/v1647767968/Newmonz/PHP/practical/realtime-chat/unread-check.gif](https://res.cloudinary.com/heart1jp/image/upload/v1647767968/Newmonz/PHP/practical/realtime-chat/unread-check.gif)
+
+#### 伸縮するテキストエリア：Elastice textarea
+
+#### 逆順無限スクロールによる追加読み込み：Infinite scrolling in reverse order
+
+![https://res.cloudinary.com/heart1jp/image/upload/v1647768653/Newmonz/PHP/practical/realtime-chat/infinite-scrolling.gif](https://res.cloudinary.com/heart1jp/image/upload/v1647768653/Newmonz/PHP/practical/realtime-chat/infinite-scrolling.gif)
+
+#### スクロール位置の維持：Preserve scroll position 
+
+![https://res.cloudinary.com/heart1jp/image/upload/v1647768939/Newmonz/PHP/practical/realtime-chat/preserve-scroll.gif](https://res.cloudinary.com/heart1jp/image/upload/v1647768939/Newmonz/PHP/practical/realtime-chat/preserve-scroll.gif)
 
 ## 外部サービス
 
