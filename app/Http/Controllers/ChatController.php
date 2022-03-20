@@ -6,8 +6,16 @@ use App\Models\Channel;
 use App\Models\Chat;
 use Illuminate\Http\Request;
 use App\Events\ChatCreated;
+
+use Illuminate\Notifications\Notifiable; //追記
+use App\Notifications\SendSlack; //追記
+use Illuminate\Notifications\Messages\SlackMessage; //追記
+
 class ChatController extends Controller
-{
+{   
+
+    use Notifiable;
+
     /**
      * Display a listing of the resource.
      *
@@ -42,10 +50,21 @@ class ChatController extends Controller
             'user_id' => \Auth::id(),
             'content' => $request->content,
         ]);
+        // Slack通知
+        $slack = $this->notify(new SendSlack($this->generateMessage($chat)));
+        // リアルタイム通信
         event(new ChatCreated($chat));
         return back();
     }
-
+    public function routeNotificationForSlack($notification)
+    {
+        return config('app.slack_url');
+    }
+    public function generateMessage($chat)
+    {
+        return sprintf("%sさんの投稿（%s）\n%s", $chat->user->name, $chat->channel->name, $chat->content);
+    }
+    
     /**
      * Display the specified resource.
      *
