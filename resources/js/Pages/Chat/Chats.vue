@@ -2,10 +2,10 @@
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3'
 import Chat from './Partials/Chat'
 import ChatForm from './Partials/ChatForm'
-
+import ModalConfirm from '@/Components/ModalConfirm'
 import ChannelShow from './Partials/ChannelShow'
 import ChannelForm from './Partials/ChannelForm'
-import ModalConfirm from '@/Components/ModalConfirm'
+
 import Dropdown from '@/Components/Dropdown'
 import DropdownButton from '@/Components/DropdownButton'
 import { computed, ref, onMounted, watch, toRefs } from 'vue';
@@ -73,7 +73,7 @@ const toggleMenu = () => {
     document.querySelector('#side').classList.toggle('on')
 }
 
-Echo.channel('chat').listen('ChatCreated', (e) => {
+ Echo.channel('chat').listen('ChatCreated', (e) => {
     console.log('laravel-eco')
     initChats()
 })
@@ -86,9 +86,20 @@ Echo.channel('chat').listen('ChatCreated', (e) => {
             <button @click="toggleMenu()" class="md:hidden py-1 px-2 mr-1 bg-gray-800 text-gray-300 hover:bg-black hover:text-yellow-100"><i class="fa fa-bars fa-fw"></i></button>
             <div v-if="channel" @click="showModalChannel=true" @close="showModalChannel=false" class="truncate ml-1 cursor-pointer hover:text-blue-300 text-gray-200">{{ channel.name }}</div>
         </div>
+        <Dropdown>
+            <template #trigger>
+                <button class="py-1 px-2 mr-4 hover:text-yellow-200 focus:text-yellow-300"><i class="fa fa-cog"></i></button>
+            </template>
+            <template #content>
+                <DropdownButton @click="showChannelEdit=true" @close="showChannelEdit=false">チャンネル情報編集</DropdownButton>
+                <DropdownButton @click="showChannelDelete=true" @close="showChannelDelete=false">チャンネル削除</DropdownButton>
+            </template>
+        </Dropdown>
     </div>
     <ChannelShow v-if="channel" :channel="channel" :show="showModalChannel" @close="showModalChannel=false" />
-     
+    <ChannelForm v-if="channel" :channel="channel" :show="showChannelEdit" @close="showChannelEdit=false" />
+    <ModalConfirm v-if="channel" :show="showChannelDelete" @close="showChannelDelete=false" method="delete" :url="route('channels.destroy', channel)" />
+      
 
     <div v-if="!loading && !pagination.nextPageurl" class="p-2 flex justify-center">
        <div class="rounded-full bg-gray-500 text-white text-xs py-1 px-4">最初の投稿です</div>
@@ -104,8 +115,6 @@ Echo.channel('chat').listen('ChatCreated', (e) => {
         </template>
     </div>
     <ChatForm v-if="channel" :channel="channel" @onSubmit="initChats()" />
-    <ChannelForm v-if="channel" :channel="channel" :show="showChannelEdit" @close="showChannelEdit=false" />
-    <ModalConfirm v-if="channel" :show="showChannelDelete" @close="showChannelDelete=false" method="delete" :url="route('channels.destroy', channel)" />
-      
+    
     </div>
 </template>

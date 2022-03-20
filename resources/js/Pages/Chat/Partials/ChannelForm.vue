@@ -1,6 +1,6 @@
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, toRefs, watch } from 'vue'
 import Modal from '@/Components/Modal'
 import InputError from '@/Components/InputError'
 const props = defineProps({
@@ -8,21 +8,28 @@ const props = defineProps({
     show: Boolean,
 })
 const emits = defineEmits(['close']);
+const { channel } = toRefs(props);
+const form = ref({})
+onMounted(() => {
+    initForm()
+})
+watch(channel, () => {
+    initForm()
+})
 
 const initForm = () => {
-    return useForm({
-        id: props.channel?.id,
+    form.value = useForm({
         name: props.channel?.name,
         description: props.channel?.description,
     })
 }
-const form = ref(initForm())
+
 const submitChannel = () => {
-    const method = form.value.id ? 'patch' : 'post'
-    const url = form.value.id ? route('channels.update', props.channel) : route('channels.store')
+    const method = props.channel?.id ? 'patch' : 'post'
+    const url = props.channel?.id ? route('channels.update', props.channel) : route('channels.store')
     form.value.submit(method, url, {
         onSuccess: () => {
-            form.value = initForm()
+            initForm()
             emits('close')
         }
     })
