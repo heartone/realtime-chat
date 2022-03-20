@@ -1,6 +1,6 @@
 # Realtime Chat
 
-プログラミイング教室『Newmonz』の題材にも使用している、リアルタイム通信が可能なチャットツールです。Slackのような使いやすさが特徴です。
+プログラミング教室『Newmonz』の題材にも使用している、リアルタイム通信が可能なチャットツールです。Slackのような使いやすさが特徴です。
 
 It is a chat tool that enables real-time communication and is also used as the subject of the "Newmonz" programming class.
 It is designed to be as easy to use as Slack.
@@ -132,7 +132,7 @@ php artisan serve
 
 ![https://res.cloudinary.com/heart1jp/image/upload/v1647768939/Newmonz/PHP/practical/realtime-chat/preserve-scroll.gif](https://res.cloudinary.com/heart1jp/image/upload/v1647768939/Newmonz/PHP/practical/realtime-chat/preserve-scroll.gif)
 
-## 外部サービス
+## 外部サービス：External Services
 
 - Pusher - [https://pusher.com/](https://pusher.com/)
 - Slack API - [https://api.slack.com/apps](https://api.slack.com/apps)
