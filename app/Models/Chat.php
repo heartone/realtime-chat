@@ -33,6 +33,9 @@ class Chat extends Model
     }
     public function scopeSearch($query)
     {
-        $query->with('user')->latest();
+        // 同一時刻に登録されるテストデータ用にidでも並べ替え
+        $query->with('user')->latest()->orderBy('id', 'desc');
+        // 本来は以下でOK
+        // $query->with('user')->latest();
     }
 }
