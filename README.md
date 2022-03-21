@@ -12,7 +12,7 @@ It is designed to be as easy to use as Slack.
 The demo site resets the database every 24 hours. Please feel free to try it out, as no submissions will be left behind.
 
 - 会員登録・ログイン：Sign Up / Sign In
-- チャンネルの作成・変数・削除：CRUD a channel
+- チャンネルの作成・編集・削除：CRUD a channel
 - チャットの投稿・編集・削除：CRUD a chat
 
 [https://newmonz-chat.herokuapp.com/](https://newmonz-chat.herokuapp.com/)
@@ -27,7 +27,7 @@ The demo site resets the database every 24 hours. Please feel free to try it out
 
 チャットの編集・削除も同様です。
 
-Originally, only the channel creator (i.e., administrator) is supposed to be able to edit and delete channels, but for demonstration purposes, all members can do thees actions
+Originally, only the channel creator (i.e., administrator) is supposed to be able to edit and delete channels, but for demonstration purposes, all members can do thees actions.  
 For the same reason, anyone can edit or delete chats.
 
 ## 動作要件：Requirements
@@ -53,8 +53,9 @@ For the same reason, anyone can edit or delete chats.
 git clone git@github.com:heartone/realtime-chat.git
 cd realtime-chat
 composer update
+npm install && npm run dev
 
-mv.env.example .env
+mv .env.example .env
 php artisan key:generate
 ```
 
