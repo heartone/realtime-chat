@@ -20758,7 +20758,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       document.querySelector('#side').classList.toggle('on');
     };
 
-    var sound = new Audio('/mp3/sound.mp3');
+    var sound = new Audio('/mp3/piron.mp3');
     Echo.channel('chat').listen('ChatCreated', function (e) {
       sound.play();
       initChats();
