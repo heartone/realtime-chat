@@ -53,7 +53,7 @@ class ChatController extends Controller
         // Slack通知
         $slack = $this->notify(new SendSlack($this->generateMessage($chat)));
         // リアルタイム通信
-        event(new ChatCreated($chat));
+        broadcast(new ChatCreated($chat))->toOthers();
         return back();
     }
     public function routeNotificationForSlack($notification)

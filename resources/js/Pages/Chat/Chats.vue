@@ -72,8 +72,9 @@ const scroll = () => {
 const toggleMenu = () => {
     document.querySelector('#side').classList.toggle('on')
 }
-
-Echo.channel('chat').listen('ChatCreated', (e) => {
+const sound = new Audio('/mp3/sound.mp3');
+Echo.channel('chat').listen('ChatCreated', (e) => {    
+    sound.play();
     initChats()
 })
 </script>
