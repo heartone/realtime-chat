@@ -15,7 +15,7 @@ The demo site resets the database every 24 hours. Please feel free to try it out
 - チャンネルの作成・編集・削除：CRUD a channel
 - チャットの投稿・編集・削除：CRUD a chat
 
-[https://newmonz-chat.herokuapp.com/](https://newmonz-chat.herokuapp.com/)
+[https://realtime-chat.newmonz.jp/](https://realtime-chat.newmonz.jp/)
 
 ### スクリーンショット：Screenshot
 
