@@ -24,11 +24,11 @@ class ChatController extends Controller
     public function index(Request $request)
     {
         $channel = Channel::findOrFail($request->channel_id);
-        return $channel->chats()->search()->paginate(5)->withQueryString();
+        return $channel->chats()->search()->paginate(50)->withQueryString();
         return inertia('Chat/Base')->with([
             'channels' => Channel::search()->paginate(50)->withQueryString(), 
             'channel' => $channel,
-            'chats' => $channel->chats()->search()->paginate(5)->withQueryString(),           
+            'chats' => $channel->chats()->search()->paginate(10)->withQueryString(),           
         ]);
     }
 
