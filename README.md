@@ -19,7 +19,9 @@ The demo site resets the database every 24 hours. Please feel free to try it out
 
 ### スクリーンショット：Screenshot
 
-![https://res.cloudinary.com/heart1jp/image/upload/v1647767045/Newmonz/PHP/practical/realtime-chat/screenshot.png](https://res.cloudinary.com/heart1jp/image/upload/v1647767045/Newmonz/PHP/practical/realtime-chat/screenshot.png)
+![https://newmonz.jp/storage/images/1/4a72251d-4c45-4649-9738-03d3d418ee5f.png
+](https://newmonz.jp/storage/images/1/4a72251d-4c45-4649-9738-03d3d418ee5f.png
+)
 
 ### 備考：Notes
 
